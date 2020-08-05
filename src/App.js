@@ -86,6 +86,12 @@ const Button = styled.div`
   font-size: 13px;
   position: relative;
 `;
+const SecondHero = styled.img`
+  position: relative;
+  z-index: 20;
+  top: -58px;
+  width: 100%;
+`;
 
 const App = () => {
   return (
@@ -122,6 +128,9 @@ const App = () => {
         <p>Contact us for a complimentary session!</p>
       </Content>
       <Button>DISCOVER THE LEGEND STARKAD</Button>
+      {/* <HeroWrapper> */}
+      <SecondHero src="/hero2.png" />
+      {/* </HeroWrapper> */}
     </Wrapper>
   );
 };
