@@ -35,21 +35,21 @@ const LogoContainer = styled.a`
   height: 25px;
   padding: 15px;
   display: inline-block;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
-  z-index: 10;
+  z-index: 1001;
 `;
 const Logo = styled.img`
   height: 25px;
 `;
 
 const Burger = styled.img`
-  position: absolute;
+  position: fixed;
   left: 25px;
   top: 45px;
   width: 50px;
-  z-index: 9;
+  z-index: 1000;
 `;
 
 const Background = styled.div`
@@ -92,6 +92,46 @@ const SecondHero = styled.img`
   top: -58px;
   width: 100%;
 `;
+const ParagraphOnBlack = styled.p`
+  color: white;
+  font-weight: 600;
+  text-align: center;
+  padding: 40px 10px;
+`;
+
+const OfferWrapper = styled.div`
+  position: relative;
+  height: 400px;
+`;
+const OfferBg = styled.div`
+  background: transparent url(/bg-offer.png);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: top center;
+`;
+const OfferSubtitle = styled.h2`
+  position: absolute;
+  color: white;
+  text-align: center;
+  width: 100%;
+  padding: 25px 0;
+`;
+const OfferParagraph = styled.p`
+  text-align: center;
+  position: absolute;
+  color: white;
+  padding: 100px 25px;
+  font-weight: 600;
+`;
+const PlusButton = styled.div`
+  background: url(/plus-btn.png) no-repeat top center;
+  height: 64px;
+  width: 64px;
+  margin: 40px auto 0 auto;
+  display: block;
+`;
 
 const App = () => {
   return (
@@ -128,9 +168,25 @@ const App = () => {
         <p>Contact us for a complimentary session!</p>
       </Content>
       <Button>DISCOVER THE LEGEND STARKAD</Button>
-      {/* <HeroWrapper> */}
+
       <SecondHero src="/hero2.png" />
-      {/* </HeroWrapper> */}
+      <ParagraphOnBlack>
+        OUR MISSION IS TO HELP DENTAL AND ORTHODONTIC CLINIC, TO INCREASE PROFITABILITY, TO MEET
+        THEIR CHALLENGES AND TO FULFIL THEIR OBJECTIVES WITH EFFECTIVE STRATEGIES.
+      </ParagraphOnBlack>
+
+      <OfferWrapper>
+        <OfferBg />
+        <OfferSubtitle>
+          THE <strong>STARKAD</strong> OFFER
+        </OfferSubtitle>
+        <OfferParagraph>
+          Marketing innovations? <br></br>The means of communication change at breakneck speed. To
+          reach your audience, you can no longer rely on one or two channels. Starkad offers more
+          effective strategies that are customized to the needs of your business or campaign.
+          <PlusButton src="/plus-btn.png"></PlusButton>
+        </OfferParagraph>
+      </OfferWrapper>
     </Wrapper>
   );
 };
