@@ -7,26 +7,32 @@ const HeroWrapper = styled.div`
   position: relative;
   width: 100%;
 `;
-const HeroOverlay = styled.img`
+const Hero = styled.img`
+  position: relative;
+  top: 0;
+  width: 100%;
+  margin-bottom: 20px;
+`;
+const HeroOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+`;
+const HeroLogo = styled.img`
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-`;
-const Hero = styled.div`
-  background: url(/hero.jpg);
-  height: 246px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  /* position: absolute; */
-  top: 0;
 `;
 
 const LogoContainer = styled.a`
   background: black;
-  height: 50px;
+  height: 25px;
   padding: 15px;
   display: inline-block;
   position: absolute;
@@ -34,27 +40,88 @@ const LogoContainer = styled.a`
   top: 0;
   z-index: 10;
 `;
-const Logo = styled.img``;
+const Logo = styled.img`
+  height: 25px;
+`;
 
 const Burger = styled.img`
-  width: 60px;
   position: absolute;
-  left: 45px;
-  top: 70px;
-  width: 60px;
+  left: 25px;
+  top: 45px;
+  width: 50px;
+  z-index: 9;
+`;
+
+const Background = styled.div`
+  background: transparent url(/bg.png);
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  position: absolute;
+  background-position: top;
+  z-index: 5;
+  margin-top: 21%;
+`;
+const Content = styled.div`
+  background: white;
+  z-index: 20;
+  padding: 25px 10px;
+  position: relative;
+`;
+const ContentLogo = styled.img`
+  margin-bottom: 15px;
+`;
+const Subtitle = styled.h2`
+  font-weight: normal;
+`;
+const Button = styled.div`
+  background: url(/button.png);
+  padding: 20px;
+  color: white;
+  width: 60%;
+  text-align: center;
+  margin: 0 auto;
+  z-index: 30;
+  top: -30px;
+  font-size: 13px;
+  position: relative;
 `;
 
 const App = () => {
   return (
     <Wrapper>
+      <Background />
+
       <HeroWrapper>
-        <HeroOverlay src="/logo-hero.png"></HeroOverlay>
-        <Hero></Hero>
+        <HeroOverlay />
+        <HeroLogo src="/logo-hero.png"></HeroLogo>
+        <Hero src="/hero.jpg"></Hero>
       </HeroWrapper>
       <LogoContainer>
         <Logo src="/logo.png" />
       </LogoContainer>
       <Burger src="/burg.png" />
+
+      <Content>
+        <Subtitle>DO YOU KNOW</Subtitle>
+        <ContentLogo src="content-logo.png" />
+        <p>We Are Not Just Another Marketing Company</p>
+
+        <p>
+          We are more than just a marketing company. We know dentistry inside and out and we know
+          how to market dental specialties. All of our services, consulting and continuing education
+          are in-house but we do more than provide isolated marketing services. We are dedicated to
+          creating targeted marketing campaigns, staff training and strategy around your practice
+          goals and growth.
+        </p>
+
+        <p>
+          Based in Montreal, Quebec, Starkad has client all across Canada. Do you want to growht
+          your practice?
+        </p>
+        <p>Contact us for a complimentary session!</p>
+      </Content>
+      <Button>DISCOVER THE LEGEND STARKAD</Button>
     </Wrapper>
   );
 };
