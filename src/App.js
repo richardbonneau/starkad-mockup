@@ -168,6 +168,7 @@ const ServicesWrapper = styled.div`
   @media (min-width: 1024px) {
     display: flex;
     flex-wrap: wrap;
+    padding-top: 55px;
   }
 `;
 const Service = styled.div`
@@ -178,8 +179,28 @@ const Service = styled.div`
   background-image: url(/serv-line.png);
   background-repeat: no-repeat;
   background-position: center center;
+  transition: all 0.4s linear 0s;
+
+  .count {
+    color: ${(props) => (props.gray ? "black" : "#0e0e0e")};
+    font-size: 115px;
+    text-align: center;
+    font-weight: 800;
+    bottom: -58px;
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+
   @media (min-width: 1024px) {
     width: 33.33%;
+  }
+  &:hover {
+    background-image: url(/serv-bg-red.png);
+
+    & > .count {
+      display: none;
+    }
   }
 `;
 const ServiceImage = styled.img`
@@ -231,6 +252,22 @@ const GrayArea = styled.div`
   width: 100%;
   height: 50px;
   background: #0e0e0e;
+`;
+const ServiceSubtitle = styled.h3`
+  color: white;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 10%;
+  z-index: 300;
+`;
+const Count = styled.div`
+
+}
 `;
 
 const App = () => {
@@ -296,19 +333,33 @@ const App = () => {
 
       <ServicesWrapper>
         <Service gray={false}>
+          <ServiceSubtitle>Personas and Performance</ServiceSubtitle>
           <ServiceImage src="/serv-icon-01.png"></ServiceImage>
+          <Count className="count">01</Count>
         </Service>
+
         <Service gray={true}>
+          <ServiceSubtitle>Social Media</ServiceSubtitle>
           <ServiceImage src="/serv-icon-02.png"></ServiceImage>
+          <Count className="count">02</Count>
         </Service>
+
         <Service gray={false}>
+          <ServiceSubtitle>Invisalign production day</ServiceSubtitle>
           <ServiceImage src="/serv-icon-03.png"></ServiceImage>
+          <Count className="count">03</Count>
         </Service>
+
         <Service gray={true}>
+          <ServiceSubtitle>Brand management</ServiceSubtitle>
           <ServiceImage src="/serv-icon-04.png"></ServiceImage>
+          <Count className="count">04</Count>
         </Service>
+
         <Service gray={false}>
+          <ServiceSubtitle>Consulting and Training</ServiceSubtitle>
           <ServiceImage src="/serv-icon-05.png"></ServiceImage>
+          <Count className="count">05</Count>
         </Service>
       </ServicesWrapper>
 
