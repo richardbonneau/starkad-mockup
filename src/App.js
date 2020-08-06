@@ -132,6 +132,51 @@ const PlusButton = styled.div`
   margin: 40px auto 0 auto;
   display: block;
 `;
+const ServicesWrapper = styled.div``;
+const Service = styled.div`
+  width: 100%;
+  min-height: 300px;
+  position: relative;
+  background-color: ${(props) => (props.gray ? "#0e0e0e" : "black")};
+  background-image: url(/serv-line.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+`;
+const ServiceImage = styled.img`
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  margin: auto;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+`;
+const GoUp = styled.div`
+  padding: 60px 0;
+  background: url(/top.png) no-repeat center;
+  position: relative;
+  text-align: center;
+`;
+const GoUpText = styled.h2`
+  display: inline-block;
+  z-index: 400;
+  text-align: center;
+  color: white;
+`;
+const FooterWrapper = styled.div`
+  text-align: center;
+`;
+const ContactWrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  margin: 20px 0 40px;
+`;
+const Copyright = styled.h4`
+  color: white;
+  font-weight: 600;
+  padding: 20px;
+`;
 
 const App = () => {
   return (
@@ -187,6 +232,38 @@ const App = () => {
           <PlusButton src="/plus-btn.png"></PlusButton>
         </OfferParagraph>
       </OfferWrapper>
+
+      <ServicesWrapper>
+        <Service gray={false}>
+          <ServiceImage src="/serv-icon-01.png"></ServiceImage>
+        </Service>
+        <Service gray={true}>
+          <ServiceImage src="/serv-icon-02.png"></ServiceImage>
+        </Service>
+        <Service gray={false}>
+          <ServiceImage src="/serv-icon-03.png"></ServiceImage>
+        </Service>
+        <Service gray={true}>
+          <ServiceImage src="/serv-icon-04.png"></ServiceImage>
+        </Service>
+        <Service gray={false}>
+          <ServiceImage src="/serv-icon-05.png"></ServiceImage>
+        </Service>
+      </ServicesWrapper>
+
+      <GoUp>
+        <GoUpText>Top</GoUpText>
+      </GoUp>
+      <FooterWrapper>
+        <ContentLogo src="footer-logo.png" />
+
+        <ContactWrapper>
+          <img src="/phone.png" />
+          <img src="/mail.png" />
+          <div></div>
+        </ContactWrapper>
+        <Copyright>© 2017 StarKad</Copyright>
+      </FooterWrapper>
     </Wrapper>
   );
 };
