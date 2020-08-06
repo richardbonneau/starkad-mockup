@@ -166,8 +166,6 @@ const PlusButton = styled.div`
 `;
 const ServicesWrapper = styled.div`
   @media (min-width: 1024px) {
-    display: flex;
-    flex-wrap: wrap;
     padding-top: 55px;
   }
 `;
@@ -180,6 +178,7 @@ const Service = styled.div`
   background-repeat: no-repeat;
   background-position: center center;
   transition: all 0.4s linear 0s;
+  overflow: hidden;
 
   .count {
     color: ${(props) => (props.gray ? "black" : "#0e0e0e")};
@@ -191,6 +190,9 @@ const Service = styled.div`
     left: 0;
     right: 0;
   }
+  .text {
+    display: none;
+  }
 
   @media (min-width: 1024px) {
     width: 33.33%;
@@ -200,6 +202,23 @@ const Service = styled.div`
 
     & > .count {
       display: none;
+    }
+    & > .text {
+      display: block;
+      color: white;
+      text-align: center;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      height: 10%;
+      z-index: 300;
+      font-size: 17px;
+    }
+    & > .subtitle {
+      margin: 20px;
     }
   }
 `;
@@ -265,10 +284,14 @@ const ServiceSubtitle = styled.h3`
   height: 10%;
   z-index: 300;
 `;
-const Count = styled.div`
+const Count = styled.div``;
 
-}
+const Row = styled.div`
+  @media (min-width: 1024px) {
+    display: flex;
+  }
 `;
+const Text = styled.div``;
 
 const App = () => {
   return (
@@ -288,6 +311,7 @@ const App = () => {
         <Content>
           <ExtraPadding></ExtraPadding>
           <Subtitle>DO YOU KNOW</Subtitle>
+
           <ContentLogo src="content-logo.png" />
           <p>We Are Not Just Another Marketing Company</p>
 
@@ -332,35 +356,44 @@ const App = () => {
       <GrayArea></GrayArea>
 
       <ServicesWrapper>
-        <Service gray={false}>
-          <ServiceSubtitle>Personas and Performance</ServiceSubtitle>
-          <ServiceImage src="/serv-icon-01.png"></ServiceImage>
-          <Count className="count">01</Count>
-        </Service>
+        <Row second={false}>
+          <Service gray={false}>
+            <ServiceSubtitle className="subtitle">Personas and Performance</ServiceSubtitle>
+            <ServiceImage src="/serv-icon-01.png"></ServiceImage>
+            <Text className="text">Know your audience to communicate more effectively</Text>
+            <Count className="count">01</Count>
+          </Service>
 
-        <Service gray={true}>
-          <ServiceSubtitle>Social Media</ServiceSubtitle>
-          <ServiceImage src="/serv-icon-02.png"></ServiceImage>
-          <Count className="count">02</Count>
-        </Service>
+          <Service gray={true}>
+            <ServiceSubtitle className="subtitle">Social Media</ServiceSubtitle>
+            <ServiceImage src="/serv-icon-02.png"></ServiceImage>
+            <Text className="text">Bring new patients and build your brand</Text>
+            <Count className="count">02</Count>
+          </Service>
 
-        <Service gray={false}>
-          <ServiceSubtitle>Invisalign production day</ServiceSubtitle>
-          <ServiceImage src="/serv-icon-03.png"></ServiceImage>
-          <Count className="count">03</Count>
-        </Service>
+          <Service gray={false}>
+            <ServiceSubtitle className="subtitle">Invisalign production day</ServiceSubtitle>
+            <ServiceImage src="/serv-icon-03.png"></ServiceImage>
+            <Text className="text">IPD, VIP patient, reference</Text>
+            <Count className="count">03</Count>
+          </Service>
+        </Row>
 
-        <Service gray={true}>
-          <ServiceSubtitle>Brand management</ServiceSubtitle>
-          <ServiceImage src="/serv-icon-04.png"></ServiceImage>
-          <Count className="count">04</Count>
-        </Service>
+        <Row second={true}>
+          <Service gray={true}>
+            <ServiceSubtitle className="subtitle">Brand management</ServiceSubtitle>
+            <ServiceImage src="/serv-icon-04.png"></ServiceImage>
+            <Text className="text">Print, Radio and more</Text>
+            <Count className="count">04</Count>
+          </Service>
 
-        <Service gray={false}>
-          <ServiceSubtitle>Consulting and Training</ServiceSubtitle>
-          <ServiceImage src="/serv-icon-05.png"></ServiceImage>
-          <Count className="count">05</Count>
-        </Service>
+          <Service gray={false}>
+            <ServiceSubtitle className="subtitle">Consulting and Training</ServiceSubtitle>
+            <ServiceImage src="/serv-icon-05.png"></ServiceImage>
+            <Text className="text">Constantly improve for sustainability</Text>
+            <Count className="count">05</Count>
+          </Service>
+        </Row>
       </ServicesWrapper>
 
       <GoUp>
