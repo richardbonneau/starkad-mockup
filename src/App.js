@@ -177,6 +177,7 @@ const Copyright = styled.h4`
   font-weight: 600;
   padding: 20px;
 `;
+const FlexFirstPart = styled.div``;
 
 const App = () => {
   return (
@@ -192,29 +193,31 @@ const App = () => {
         <Logo src="/logo.png" />
       </LogoContainer>
       <Burger src="/burg.png" />
+      <FlexFirstPart>
+        <Content>
+          <Subtitle>DO YOU KNOW</Subtitle>
+          <ContentLogo src="content-logo.png" />
+          <p>We Are Not Just Another Marketing Company</p>
 
-      <Content>
-        <Subtitle>DO YOU KNOW</Subtitle>
-        <ContentLogo src="content-logo.png" />
-        <p>We Are Not Just Another Marketing Company</p>
+          <p>
+            We are more than just a marketing company. We know dentistry inside and out and we know
+            how to market dental specialties. All of our services, consulting and continuing
+            education are in-house but we do more than provide isolated marketing services. We are
+            dedicated to creating targeted marketing campaigns, staff training and strategy around
+            your practice goals and growth.
+          </p>
 
-        <p>
-          We are more than just a marketing company. We know dentistry inside and out and we know
-          how to market dental specialties. All of our services, consulting and continuing education
-          are in-house but we do more than provide isolated marketing services. We are dedicated to
-          creating targeted marketing campaigns, staff training and strategy around your practice
-          goals and growth.
-        </p>
+          <p>
+            Based in Montreal, Quebec, Starkad has client all across Canada. Do you want to growht
+            your practice?
+          </p>
+          <p>Contact us for a complimentary session!</p>
+          <Button>DISCOVER THE LEGEND STARKAD</Button>
+        </Content>
 
-        <p>
-          Based in Montreal, Quebec, Starkad has client all across Canada. Do you want to growht
-          your practice?
-        </p>
-        <p>Contact us for a complimentary session!</p>
-      </Content>
-      <Button>DISCOVER THE LEGEND STARKAD</Button>
+        <SecondHero src="/hero2.png" />
+      </FlexFirstPart>
 
-      <SecondHero src="/hero2.png" />
       <ParagraphOnBlack>
         OUR MISSION IS TO HELP DENTAL AND ORTHODONTIC CLINIC, TO INCREASE PROFITABILITY, TO MEET
         THEIR CHALLENGES AND TO FULFIL THEIR OBJECTIVES WITH EFFECTIVE STRATEGIES.
