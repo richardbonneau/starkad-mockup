@@ -39,9 +39,19 @@ const LogoContainer = styled.a`
   left: 0;
   top: 0;
   z-index: 1001;
+  @media (min-width: 1024px) {
+    height: 50px;
+    width: 50px;
+    left: 65px;
+    top: 60px;
+    position: absolute;
+  }
 `;
 const Logo = styled.img`
   height: 25px;
+  @media (min-width: 1024px) {
+    height: 50px;
+  }
 `;
 
 const Burger = styled.img`
@@ -50,6 +60,12 @@ const Burger = styled.img`
   top: 45px;
   width: 50px;
   z-index: 1000;
+  @media (min-width: 1024px) {
+    left: 135px;
+    top: 90px;
+    width: 60px;
+    position: absolute;
+  }
 `;
 
 const Background = styled.div`
@@ -61,6 +77,9 @@ const Background = styled.div`
   background-position: top;
   z-index: 5;
   margin-top: 21%;
+  @media (min-width: 1024px) {
+    height: 200%;
+  }
 `;
 const Content = styled.div`
   background: white;
@@ -123,6 +142,8 @@ const ParagraphOnBlack = styled.p`
     padding: 150px;
     background: #0e0e0e;
     margin: 0;
+    z-index: 10;
+    position: relative;
   }
 `;
 
@@ -137,6 +158,7 @@ const OfferBg = styled.div`
   position: absolute;
   background-repeat: no-repeat;
   background-position: top center;
+  z-index: 9;
 `;
 const OfferSubtitle = styled.h2`
   position: absolute;
@@ -144,6 +166,10 @@ const OfferSubtitle = styled.h2`
   text-align: center;
   width: 100%;
   padding: 25px 0;
+  z-index: 10;
+  @media (min-width: 1024px) {
+    padding: 90px 0;
+  }
 `;
 const OfferParagraph = styled.p`
   text-align: center;
@@ -152,7 +178,8 @@ const OfferParagraph = styled.p`
   padding: 100px 25px;
   font-weight: 600;
   @media (min-width: 1024px) {
-    padding: 100px 110px;
+    padding: 180px 110px;
+    z-index: 10;
   }
 `;
 const PlusButton = styled.div`
@@ -163,6 +190,7 @@ const PlusButton = styled.div`
   display: block;
   bottom: 0px;
   position: absolute;
+  z-index: 10;
 `;
 const ServicesWrapper = styled.div`
   @media (min-width: 1024px) {
@@ -324,7 +352,7 @@ const App = () => {
           </p>
 
           <p>
-            Based in Montreal, Quebec, Starkad has client all across Canada. Do you want to growht
+            Based in Montreal, Quebec, Starkad has clients all across Canada. Do you want to grow
             your practice?
           </p>
           <p>Contact us for a complimentary session!</p>
