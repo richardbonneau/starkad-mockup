@@ -67,12 +67,26 @@ const Content = styled.div`
   z-index: 20;
   padding: 25px 10px;
   position: relative;
+  @media (min-width: 1024px) {
+    max-width: 500px;
+  }
 `;
 const ContentLogo = styled.img`
   margin-bottom: 15px;
 `;
 const Subtitle = styled.h2`
   font-weight: normal;
+  @media (min-width: 1024px) {
+    padding: 20px;
+    left: -185px;
+    position: relative;
+    background: white;
+  }
+`;
+const ExtraPadding = styled.div`
+  @media (min-width: 1024px) {
+    padding-top: 65px;
+  }
 `;
 const Button = styled.div`
   background: url(/button.png);
@@ -82,14 +96,22 @@ const Button = styled.div`
   text-align: center;
   margin: 0 auto;
   z-index: 30;
-  top: -30px;
+  bottom: -60px;
   font-size: 13px;
   position: relative;
+  /* @media (min-width: 1024px) {
+    bottom: -160px;
+  } */
 `;
 const SecondHero = styled.img`
   position: relative;
-  z-index: 20;
-  top: -58px;
+  @media (min-width: 1024px) {
+    width: 50%;
+    top: 52px;
+    max-width: 500px;
+  }
+
+  z-index: 15;
   width: 100%;
 `;
 const ParagraphOnBlack = styled.p`
@@ -97,6 +119,11 @@ const ParagraphOnBlack = styled.p`
   font-weight: 600;
   text-align: center;
   padding: 40px 10px;
+  @media (min-width: 1024px) {
+    padding: 150px;
+    background: #0e0e0e;
+    margin: 0;
+  }
 `;
 
 const OfferWrapper = styled.div`
@@ -104,9 +131,9 @@ const OfferWrapper = styled.div`
   height: 400px;
 `;
 const OfferBg = styled.div`
-  background: transparent url(/bg-offer.png);
+  background: black url(/bg-offer.png);
   width: 100%;
-  height: 100%;
+  height: 93%;
   position: absolute;
   background-repeat: no-repeat;
   background-position: top center;
@@ -124,15 +151,25 @@ const OfferParagraph = styled.p`
   color: white;
   padding: 100px 25px;
   font-weight: 600;
+  @media (min-width: 1024px) {
+    padding: 100px 110px;
+  }
 `;
 const PlusButton = styled.div`
   background: url(/plus-btn.png) no-repeat top center;
   height: 64px;
-  width: 64px;
+  width: 100%;
   margin: 40px auto 0 auto;
   display: block;
+  bottom: 0px;
+  position: absolute;
 `;
-const ServicesWrapper = styled.div``;
+const ServicesWrapper = styled.div`
+  @media (min-width: 1024px) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+`;
 const Service = styled.div`
   width: 100%;
   min-height: 300px;
@@ -141,6 +178,9 @@ const Service = styled.div`
   background-image: url(/serv-line.png);
   background-repeat: no-repeat;
   background-position: center center;
+  @media (min-width: 1024px) {
+    width: 33.33%;
+  }
 `;
 const ServiceImage = styled.img`
   position: absolute;
@@ -177,7 +217,21 @@ const Copyright = styled.h4`
   font-weight: 600;
   padding: 20px;
 `;
-const FlexFirstPart = styled.div``;
+const FlexFirstPart = styled.div`
+  @media (min-width: 1024px) {
+    justify-content: center;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+`;
+const SecondPart = styled.div`
+  background: #0e0e0e;
+`;
+const GrayArea = styled.div`
+  width: 100%;
+  height: 50px;
+  background: #0e0e0e;
+`;
 
 const App = () => {
   return (
@@ -195,6 +249,7 @@ const App = () => {
       <Burger src="/burg.png" />
       <FlexFirstPart>
         <Content>
+          <ExtraPadding></ExtraPadding>
           <Subtitle>DO YOU KNOW</Subtitle>
           <ContentLogo src="content-logo.png" />
           <p>We Are Not Just Another Marketing Company</p>
@@ -218,23 +273,26 @@ const App = () => {
         <SecondHero src="/hero2.png" />
       </FlexFirstPart>
 
-      <ParagraphOnBlack>
-        OUR MISSION IS TO HELP DENTAL AND ORTHODONTIC CLINIC, TO INCREASE PROFITABILITY, TO MEET
-        THEIR CHALLENGES AND TO FULFIL THEIR OBJECTIVES WITH EFFECTIVE STRATEGIES.
-      </ParagraphOnBlack>
+      <SecondPart>
+        <ParagraphOnBlack>
+          OUR MISSION IS TO HELP DENTAL AND ORTHODONTIC CLINIC, TO INCREASE PROFITABILITY, TO MEET
+          THEIR CHALLENGES AND TO FULFIL THEIR OBJECTIVES WITH EFFECTIVE STRATEGIES.
+        </ParagraphOnBlack>
 
-      <OfferWrapper>
-        <OfferBg />
-        <OfferSubtitle>
-          THE <strong>STARKAD</strong> OFFER
-        </OfferSubtitle>
-        <OfferParagraph>
-          Marketing innovations? <br></br>The means of communication change at breakneck speed. To
-          reach your audience, you can no longer rely on one or two channels. Starkad offers more
-          effective strategies that are customized to the needs of your business or campaign.
+        <OfferWrapper>
+          <OfferBg />
+          <OfferSubtitle>
+            THE <strong>STARKAD</strong> OFFER
+          </OfferSubtitle>
+          <OfferParagraph>
+            Marketing innovations? <br></br>The means of communication change at breakneck speed. To
+            reach your audience, you can no longer rely on one or two channels. Starkad offers more
+            effective strategies that are customized to the needs of your business or campaign.
+          </OfferParagraph>
           <PlusButton src="/plus-btn.png"></PlusButton>
-        </OfferParagraph>
-      </OfferWrapper>
+        </OfferWrapper>
+      </SecondPart>
+      <GrayArea></GrayArea>
 
       <ServicesWrapper>
         <Service gray={false}>
