@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import "./App.css";
+import scrollToElement from "scroll-to-element";
+import VisibilitySensor from "react-visibility-sensor";
+
 const Wrapper = styled.div``;
 
 const HeroWrapper = styled.div`
@@ -38,7 +41,7 @@ const LogoContainer = styled.a`
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 1001;
+  z-index: 20000;
   @media (min-width: 1024px) {
     height: 50px;
     width: 50px;
@@ -59,7 +62,8 @@ const Burger = styled.img`
   left: 25px;
   top: 45px;
   width: 50px;
-  z-index: 1000;
+  z-index: 15000;
+  cursor: pointer;
   @media (min-width: 1024px) {
     left: 135px;
     top: 90px;
@@ -118,9 +122,6 @@ const Button = styled.div`
   bottom: -60px;
   font-size: 13px;
   position: relative;
-  /* @media (min-width: 1024px) {
-    bottom: -160px;
-  } */
 `;
 const SecondHero = styled.img`
   position: relative;
@@ -138,8 +139,11 @@ const ParagraphOnBlack = styled.p`
   font-weight: 600;
   text-align: center;
   padding: 40px 10px;
+  transition: all 2s linear 0s;
+  opacity: ${(props) => (props.animation ? 1 : 0)};
+  transform: ${(props) => (props.animation ? "translateY(-20px)" : "none")};
   @media (min-width: 1024px) {
-    padding: 150px;
+    padding: 170px 150px 120px 150px;
     background: #0e0e0e;
     margin: 0;
     z-index: 10;
@@ -150,6 +154,10 @@ const ParagraphOnBlack = styled.p`
 const OfferWrapper = styled.div`
   position: relative;
   height: 400px;
+  top: 500px;
+  transition: all 2s linear 0s;
+  transform: ${(props) => (props.animation ? "translateY(-500px)" : "none")};
+  z-index: 9;
 `;
 const OfferBg = styled.div`
   background: black url(/bg-offer.png);
@@ -176,10 +184,10 @@ const OfferParagraph = styled.p`
   position: absolute;
   color: white;
   padding: 100px 25px;
+  z-index: 10;
   font-weight: 600;
   @media (min-width: 1024px) {
     padding: 180px 110px;
-    z-index: 10;
   }
 `;
 const PlusButton = styled.div`
@@ -207,6 +215,7 @@ const Service = styled.div`
   background-position: center center;
   transition: all 0.4s linear 0s;
   overflow: hidden;
+  cursor: pointer;
 
   .count {
     color: ${(props) => (props.gray ? "black" : "#0e0e0e")};
@@ -271,6 +280,11 @@ const GoUpText = styled.h2`
   z-index: 400;
   text-align: center;
   color: white;
+  cursor: pointer;
+  transition: all 0.4s linear 0s;
+  &:hover {
+    color: red;
+  }
 `;
 const FooterWrapper = styled.div`
   text-align: center;
@@ -320,22 +334,74 @@ const Row = styled.div`
   }
 `;
 const Text = styled.div``;
+const GoDown = styled.img``;
+const GoDownWrapper = styled.div`
+  display: none;
+  color: white;
+  z-index: 4000;
+
+  position: absolute;
+  bottom: 70px;
+  width: 100%;
+  text-align: center;
+  transition: all 0.4s linear 0s;
+  cursor: pointer;
+  @media (min-width: 1024px) {
+    display: block;
+  }
+  .godowntext {
+    padding-top: 10px;
+  }
+  &:hover {
+    color: red;
+  }
+`;
+const Menu = styled.div`
+  transition: all 0.4s linear 0s;
+  opacity: ${(props) => (props.menuOpened ? 1 : 0)};
+  z-index: 10000;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  background: black url(/menu-bg.png) no-repeat center center;
+`;
 
 const App = () => {
+  const [animation, startAnimation] = React.useState(false);
+  const [menuOpened, setMenuOpened] = React.useState(false);
+
   return (
     <Wrapper>
+      <Menu menuOpened={menuOpened}></Menu>
       <Background />
 
-      <HeroWrapper>
+      <HeroWrapper className="hero">
         <HeroOverlay />
         <HeroLogo src="/logo-hero.png"></HeroLogo>
         <Hero src="/hero.jpg"></Hero>
+        <GoDownWrapper
+          onClick={() => {
+            scrollToElement(".white", {
+              offset: 0,
+              ease: "linear",
+              duration: 750,
+            });
+          }}
+        >
+          <GoDown src="/godown.png" />
+          <div className="godowntext">
+            Go <strong>down</strong>
+          </div>
+        </GoDownWrapper>
       </HeroWrapper>
       <LogoContainer>
         <Logo src="/logo.png" />
       </LogoContainer>
-      <Burger src="/burg.png" />
-      <FlexFirstPart>
+      <Burger
+        src={menuOpened ? "/close.png" : "/burg.png"}
+        onClick={() => setMenuOpened(!menuOpened)}
+      />
+      <FlexFirstPart className="white">
         <Content>
           <ExtraPadding></ExtraPadding>
           <Subtitle>DO YOU KNOW</Subtitle>
@@ -363,12 +429,28 @@ const App = () => {
       </FlexFirstPart>
 
       <SecondPart>
-        <ParagraphOnBlack>
-          OUR MISSION IS TO HELP DENTAL AND ORTHODONTIC CLINIC, TO INCREASE PROFITABILITY, TO MEET
-          THEIR CHALLENGES AND TO FULFIL THEIR OBJECTIVES WITH EFFECTIVE STRATEGIES.
-        </ParagraphOnBlack>
-
-        <OfferWrapper>
+        <VisibilitySensor
+          delayedCall={true}
+          onChange={(isVisible) => {
+            if (isVisible) {
+              startAnimation(true);
+            }
+          }}
+        >
+          <ParagraphOnBlack animation={animation}>
+            OUR MISSION IS TO HELP DENTAL AND ORTHODONTIC CLINIC, TO INCREASE PROFITABILITY, TO MEET
+            THEIR CHALLENGES AND TO FULFIL THEIR OBJECTIVES WITH EFFECTIVE STRATEGIES.
+          </ParagraphOnBlack>
+        </VisibilitySensor>
+        {/* <VisibilitySensor
+          delayedCall={true}
+          onChange={(isVisible) => {
+            if (isVisible) {
+              startAnimationOffer(true);
+            }
+          }}
+        > */}
+        <OfferWrapper animation={animation}>
           <OfferBg />
           <OfferSubtitle>
             THE <strong>STARKAD</strong> OFFER
@@ -380,6 +462,7 @@ const App = () => {
           </OfferParagraph>
           <PlusButton src="/plus-btn.png"></PlusButton>
         </OfferWrapper>
+        {/* </VisibilitySensor> */}
       </SecondPart>
       <GrayArea></GrayArea>
 
@@ -425,7 +508,17 @@ const App = () => {
       </ServicesWrapper>
 
       <GoUp>
-        <GoUpText>Top</GoUpText>
+        <GoUpText
+          onClick={() => {
+            scrollToElement(".hero", {
+              offset: 0,
+              ease: "linear",
+              duration: 750,
+            });
+          }}
+        >
+          Top
+        </GoUpText>
       </GoUp>
       <FooterWrapper>
         <ContentLogo src="footer-logo.png" />
