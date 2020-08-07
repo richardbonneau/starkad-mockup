@@ -156,6 +156,7 @@ const OfferWrapper = styled.div`
   height: 400px;
   top: 500px;
   transition: all 2s linear 0s;
+  opacity: ${(props) => (props.animation ? "1" : "0")};
   transform: ${(props) => (props.animation ? "translateY(-500px)" : "none")};
   z-index: 9;
 `;
@@ -216,7 +217,8 @@ const Service = styled.div`
   transition: all 0.4s linear 0s;
   overflow: hidden;
   cursor: pointer;
-
+  transition: transform 1.5s linear 0s;
+  transform: ${(props) => (props.services ? "scale(1)" : "scale(0)")};
   .count {
     color: ${(props) => (props.gray ? "black" : "#0e0e0e")};
     font-size: 115px;
@@ -283,11 +285,14 @@ const GoUpText = styled.h2`
   cursor: pointer;
   transition: all 0.4s linear 0s;
   &:hover {
-    color: red;
+    color: #981e2b;
   }
 `;
 const FooterWrapper = styled.div`
   text-align: center;
+  @media (min-width: 1024px) {
+    margin-top: 270px;
+  }
 `;
 const ContactWrapper = styled.div`
   display: flex;
@@ -353,7 +358,7 @@ const GoDownWrapper = styled.div`
     padding-top: 10px;
   }
   &:hover {
-    color: red;
+    color: #981e2b;
   }
 `;
 const Menu = styled.div`
@@ -398,21 +403,54 @@ const MenuContacts = styled.div`
   justify-content: center;
   color: white;
   font-size: 18px;
-    text-align: center;
-    .contact{
-      margin-bottom: 30px;
-      font-weight: 600;}
-    .phone{
-      margin-top: 30px;
-      font-weight: 600;}
-    .email{
-      font-weight: 600;
-    }
-}
+  text-align: center;
+  .contact {
+    margin-bottom: 30px;
+    font-weight: 600;
+  }
+  .phone {
+    margin-top: 30px;
+    font-weight: 600;
+  }
+  .email {
+    font-weight: 600;
+  }
+`;
+
+const SideBar = styled.div`
+  position: absolute;
+  right: -700px;
+  background: #0e0e0e url(/side-bar.png) no-repeat left;
+  margin-left: 50%;
+  display: none;
+  height: 200px;
+  width: 50%;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 50px;
+  align-items: center;
+  transition: all 1s linear 0s;
+  transform: ${(props) => (props.sideBar ? "translateX(-700px)" : "none")};
+  @media (min-width: 1024px) {
+    display: flex;
+  }
+  .arrow {
+    height: 20px;
+    padding: 0 45px 0 10px;
+  }
+  .sidebar-text {
+    font-size: 25px;
+    padding: 0 0 0 60px;
+  }
+  &:hover {
+    color: #981e2b;
+  }
 `;
 const App = () => {
   const [animation, startAnimation] = React.useState(false);
+  const [sideBar, setSideBar] = React.useState(false);
   const [menuOpened, setMenuOpened] = React.useState(false);
+  const [services, setServices] = React.useState(false);
 
   return (
     <Wrapper>
@@ -508,14 +546,7 @@ const App = () => {
             THEIR CHALLENGES AND TO FULFIL THEIR OBJECTIVES WITH EFFECTIVE STRATEGIES.
           </ParagraphOnBlack>
         </VisibilitySensor>
-        {/* <VisibilitySensor
-          delayedCall={true}
-          onChange={(isVisible) => {
-            if (isVisible) {
-              startAnimationOffer(true);
-            }
-          }}
-        > */}
+
         <OfferWrapper animation={animation}>
           <OfferBg />
           <OfferSubtitle>
@@ -531,64 +562,84 @@ const App = () => {
         {/* </VisibilitySensor> */}
       </SecondPart>
       <GrayArea></GrayArea>
+      <VisibilitySensor
+        partialVisibility={true}
+        delayedCall={true}
+        onChange={(isVisible) => {
+          if (isVisible) {
+            setServices(true);
+          }
+        }}
+      >
+        <ServicesWrapper>
+          <Row second={false}>
+            <Service services={services} gray={false}>
+              <ServiceSubtitle className="subtitle">Personas and Performance</ServiceSubtitle>
+              <ServiceImage src="/serv-icon-01.png"></ServiceImage>
+              <Text className="text">Know your audience to communicate more effectively</Text>
+              <Count className="count">01</Count>
+            </Service>
 
-      <ServicesWrapper>
-        <Row second={false}>
-          <Service gray={false}>
-            <ServiceSubtitle className="subtitle">Personas and Performance</ServiceSubtitle>
-            <ServiceImage src="/serv-icon-01.png"></ServiceImage>
-            <Text className="text">Know your audience to communicate more effectively</Text>
-            <Count className="count">01</Count>
-          </Service>
+            <Service services={services} gray={true}>
+              <ServiceSubtitle className="subtitle">Social Media</ServiceSubtitle>
+              <ServiceImage src="/serv-icon-02.png"></ServiceImage>
+              <Text className="text">Bring new patients and build your brand</Text>
+              <Count className="count">02</Count>
+            </Service>
 
-          <Service gray={true}>
-            <ServiceSubtitle className="subtitle">Social Media</ServiceSubtitle>
-            <ServiceImage src="/serv-icon-02.png"></ServiceImage>
-            <Text className="text">Bring new patients and build your brand</Text>
-            <Count className="count">02</Count>
-          </Service>
+            <Service services={services} gray={false}>
+              <ServiceSubtitle className="subtitle">Invisalign production day</ServiceSubtitle>
+              <ServiceImage src="/serv-icon-03.png"></ServiceImage>
+              <Text className="text">IPD, VIP patient, reference</Text>
+              <Count className="count">03</Count>
+            </Service>
+          </Row>
 
-          <Service gray={false}>
-            <ServiceSubtitle className="subtitle">Invisalign production day</ServiceSubtitle>
-            <ServiceImage src="/serv-icon-03.png"></ServiceImage>
-            <Text className="text">IPD, VIP patient, reference</Text>
-            <Count className="count">03</Count>
-          </Service>
-        </Row>
+          <Row second={true}>
+            <Service services={services} gray={true}>
+              <ServiceSubtitle className="subtitle">Brand management</ServiceSubtitle>
+              <ServiceImage src="/serv-icon-04.png"></ServiceImage>
+              <Text className="text">Print, Radio and more</Text>
+              <Count className="count">04</Count>
+            </Service>
 
-        <Row second={true}>
-          <Service gray={true}>
-            <ServiceSubtitle className="subtitle">Brand management</ServiceSubtitle>
-            <ServiceImage src="/serv-icon-04.png"></ServiceImage>
-            <Text className="text">Print, Radio and more</Text>
-            <Count className="count">04</Count>
-          </Service>
+            <Service services={services} gray={false}>
+              <ServiceSubtitle className="subtitle">Consulting and Training</ServiceSubtitle>
+              <ServiceImage src="/serv-icon-05.png"></ServiceImage>
+              <Text className="text">Constantly improve for sustainability</Text>
+              <Count className="count">05</Count>
+            </Service>
+          </Row>
+        </ServicesWrapper>
+      </VisibilitySensor>
+      <VisibilitySensor
+        delayedCall={true}
+        onChange={(isVisible) => {
+          if (isVisible) setSideBar(true);
+        }}
+      >
+        <GoUp>
+          <GoUpText
+            onClick={() => {
+              scrollToElement(".hero", {
+                offset: 0,
+                ease: "linear",
+                duration: 750,
+              });
+            }}
+          >
+            Top
+          </GoUpText>
+        </GoUp>
+      </VisibilitySensor>
 
-          <Service gray={false}>
-            <ServiceSubtitle className="subtitle">Consulting and Training</ServiceSubtitle>
-            <ServiceImage src="/serv-icon-05.png"></ServiceImage>
-            <Text className="text">Constantly improve for sustainability</Text>
-            <Count className="count">05</Count>
-          </Service>
-        </Row>
-      </ServicesWrapper>
+      <SideBar sideBar={sideBar}>
+        <div className="sidebar-text">Image de marque, réseaux sociaux, SEM, SEO</div>
+        <img className="arrow" src="/right-arrow.png" />
+      </SideBar>
 
-      <GoUp>
-        <GoUpText
-          onClick={() => {
-            scrollToElement(".hero", {
-              offset: 0,
-              ease: "linear",
-              duration: 750,
-            });
-          }}
-        >
-          Top
-        </GoUpText>
-      </GoUp>
       <FooterWrapper>
         <ContentLogo src="footer-logo.png" />
-
         <ContactWrapper>
           <img src="/phone.png" />
           <img src="/mail.png" />
