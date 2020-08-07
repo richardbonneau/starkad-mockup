@@ -357,12 +357,13 @@ const GoDownWrapper = styled.div`
   }
 `;
 const Menu = styled.div`
-  transition: all 0.4s linear 0s;
+  transition: opacity 0.4s linear 0s;
   opacity: ${(props) => (props.menuOpened ? 1 : 0)};
   z-index: 10000;
-  width: 100%;
   height: 100vh;
   position: fixed;
+  width: 100%;
+  pointer-events: ${(props) => (props.menuOpened ? "auto" : "none")};
   background: black url(/menu-bg.png) no-repeat top center;
 `;
 const MenuContent = styled.div`
