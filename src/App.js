@@ -363,16 +363,81 @@ const Menu = styled.div`
   width: 100%;
   height: 100vh;
   position: fixed;
-  background: black url(/menu-bg.png) no-repeat center center;
+  background: black url(/menu-bg.png) no-repeat top center;
 `;
-
+const MenuContent = styled.div`
+  padding: 115px 82px;
+  @media (min-width: 1024px) {
+    padding: 200px 100px;
+    display: flex;
+    justify-content: space-around;
+  }
+`;
+const MenuElement = styled.h2`
+  color: white;
+  font-size: 32px;
+  margin: 10px;
+  @media (min-width: 1024px) {
+    font-size: 40px;
+  }
+`;
+const MenuIcons = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  @media (min-width: 1024px) {
+    display: none;
+  }
+`;
+const IconSeparation = styled.div`
+  width: 30px;
+`;
+const MenuContacts = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+    text-align: center;
+    .contact{
+      margin-bottom: 30px;
+      font-weight: 600;}
+    .phone{
+      margin-top: 30px;
+      font-weight: 600;}
+    .email{
+      font-weight: 600;
+    }
+}
+`;
 const App = () => {
   const [animation, startAnimation] = React.useState(false);
   const [menuOpened, setMenuOpened] = React.useState(false);
 
   return (
     <Wrapper>
-      <Menu menuOpened={menuOpened}></Menu>
+      <Menu menuOpened={menuOpened}>
+        <MenuContent>
+          <MenuIcons>
+            <img src="/phone.png" />
+            <IconSeparation></IconSeparation>
+            <img src="/mail.png" />
+          </MenuIcons>
+          <div>
+            <MenuElement>Home</MenuElement>
+            <MenuElement>Services</MenuElement>
+            <MenuElement>Blog</MenuElement>
+            <MenuElement>Contact Us</MenuElement>
+            <MenuElement>Français</MenuElement>
+          </div>
+          <MenuContacts>
+            <div className="contact">CONTACT</div>
+            <div className="email">EMAIL</div>
+            <div>info@starkad.ca</div>
+            <div className="phone">PHONE</div>
+            <div>514-206-2100</div>
+          </MenuContacts>
+        </MenuContent>
+      </Menu>
       <Background />
 
       <HeroWrapper className="hero">
