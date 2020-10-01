@@ -1,2 +1,1 @@
-## Available Scripts
-https://starkad-mockup.firebaseapp.com/
+## https://starkad-mockup.firebaseapp.com/
